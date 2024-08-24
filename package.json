@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "deploy": "gh-pages -d dist -b main -r https://github.com/yookyoung-park/yookyoung-park.github.io",
-    "publish": "pnpm build & pnpm deploy",
+    "publish": "gh-pages -d dist -b main -r https://github.com/yookyoung-park/yookyoung-park.github.io",
+    "release": "pnpm build && pnpm publish",
     "lint": "eslint .",
     "preview": "vite preview"
   },
