@@ -43,6 +43,7 @@ const chartConfigs = {
       },
     ],
     chart: {
+      exportEnabled: 1,
       caption: "매출액",
       //base
       baseFontColor: "#373737",
