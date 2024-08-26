@@ -44,7 +44,9 @@ const options = {
         fontSize: "10px",
       },
     },
-    crosshair: true,
+    gridLineWidth: 1,
+    tickPosition: "inside",
+    tickInterval: 4,
   },
   yAxis: [
     {
@@ -65,13 +67,15 @@ const options = {
           color: "#373737",
           fontSize: "11px",
         },
-        format: "{value:,.0f}", // Formatting for values without decimals
+        formatter: function ({ value }: { value: number }) {
+          return Highcharts.numberFormat(value, 0, ".", ",");
+        },
       },
       gridLineColor: "#D9D9D9",
     },
     {
       title: {
-        text: "(백만)",
+        text: "(억)",
         align: "high",
         offset: 0,
         rotation: 0,
@@ -86,7 +90,9 @@ const options = {
           color: "#373737",
           fontSize: "11px",
         },
-        format: "{value:,.0f}", // Formatting for values without decimals
+        formatter: function ({ value }: { value: number }) {
+          return value.toString().replace(/\B(?=(\d{4})+(?!\d))/g, ",");
+        },
       },
       opposite: true,
       gridLineColor: "#D9D9D9",
@@ -121,6 +127,11 @@ const options = {
         radius: 2,
         lineWidth: 1,
         symbol: "circle",
+      },
+    },
+    spline: {
+      marker: {
+        enable: false,
       },
     },
   },
@@ -170,7 +181,7 @@ const options = {
       color: "#5F6377",
       yAxis: 1,
       data: MARKET_CAPITALS.map(({ value }) =>
-        value ? value / PRICE_UNIT : null
+        value ? value / 100000000 : null
       ),
       tooltip: {
         pointFormat: "{series.name}: {point.y:,.1f}<br/>",
